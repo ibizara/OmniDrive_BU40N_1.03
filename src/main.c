@@ -247,12 +247,12 @@ void CmdOmniDriveReadDiscRaw() {
         else
             ReturnSense(0x05, 0x30, 0x02); // CANNOT READ MEDIUM - INCOMPATIBLE FORMAT
     }
-
+        
     else if (DiscType == 1) {
         if (DiscIsDVD())
             ReadDVDRaw();
         else
-            ReturnSense(0x05, 0x30, 0x02);
+            ReturnSense(0x05, 0x30, 0x02); // CANNOT READ MEDIUM - INCOMPATIBLE FORMAT
     }
 
     else if (DiscType == 2) {
