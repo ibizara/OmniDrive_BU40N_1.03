@@ -36,9 +36,6 @@ CommandTableCustom:
     .d16 0x00
     .d32 CommandTableCustom
 
-.org 0x105C8
-    .d8 0xBD, 0x1D, 0x2B, 0xCE, 0x3A, 0xDF, 0xE6, 0x36 ; magic values to enable downgrading from later FWs
-
 .org 0x1EC056
     .d8 0xDE ; Downgrade Enable
 
@@ -54,8 +51,6 @@ CommandTableCustom:
         .d32 TocOffsetValue
     DVDCharacteristicsPatchPtr:
         .d32 DVDCharacteristicsPatchAddr
-    DVDTOCReadPatchPtr:
-        .d32 DVDTOCReadPatchAddr
 .thumb
 
 .org CDDataSpeedPatchAddr
@@ -103,18 +98,12 @@ CommandTableCustom:
 .org ScrambleHookAddr
     bl ChangeDiscRWModeHook
 
-.org DVDMinusReadCheckHookAddr
-    bl DVDMinusReadCheckHook
-
 .org BDScramblePatchAddr
     nop
 .org BDScrambleHookAddr
     bl ChangeDiscRWModeHook
 
-; Forces drive to always change the read mode when disc is being read
-.org DVDScramblePatchAddr1
-    nop
-.org DVDScramblePatchAddr2
+.org DVDScramblePatchAddr
     nop
 
 .org DVDScrambleHookAddr

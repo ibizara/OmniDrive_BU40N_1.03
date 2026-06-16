@@ -16,8 +16,8 @@ DWORD SetBDCharacteristicsHook() {
         // max PSN
       //*(BYTE*)(memoryStart + BDDIOffset + 0x14) = 0x00;
         *(BYTE*)(memoryStart + BDDIOffset + 0x15) = 0xCA;
-        *(BYTE*)(memoryStart + BDDIOffset + 0x16) = 0x73;
-        *(BYTE*)(memoryStart + BDDIOffset + 0x17) = 0xFF;
+        *(BYTE*)(memoryStart + BDDIOffset + 0x16) = 0x74;
+      //*(BYTE*)(memoryStart + BDDIOffset + 0x17) = 0x00;
         // start PSN
       //*(BYTE*)(memoryStart + BDDIOffset + 0x18) = 0x00;
         *(BYTE*)(memoryStart + BDDIOffset + 0x19) = 0x10;
@@ -95,23 +95,9 @@ void EnableXGD() {
     WriteDiscStructMemByte((TocOffset + 0x11), discSize & 0xFF);
 }
 
-DWORD DVDMinusReadCheckHook() {
-    /* ARMIPS BUG WORKAROUND */
-    asm("nop");
-    
-    DWORD ret = DVDMinusReadCheck();
-
-    // force read if using READ DISC RAW
-    if (!ret && cdb[0] == 0xC0)
-        ret = 1;
-
-    return ret;
-}
-
 DWORD ReadDVDTOCHook(DWORD unk) {
-    // patch compressed code in memory at runtime
+    // might as well patch that here
     *DVDCharacteristicsPatchPtr = 0x19;
-    *DVDTOCReadPatchPtr = 0x01;
 
     DWORD ret = ReadDVDTOC(unk);
 
@@ -202,7 +188,7 @@ void ReadDVDRaw() {
 
     DVDCheckLayer(2);
 
-    DISC_SECTOR_REGISTER = 0x98; // return full sector
+    DISC_SECTOR_REGISTER = 0xF8; // return full sector
 
     if (DiscIsDVDRAM())
         ReadDVDRAMData(cdb[1] & 0x08);
@@ -261,12 +247,12 @@ void CmdOmniDriveReadDiscRaw() {
         else
             ReturnSense(0x05, 0x30, 0x02); // CANNOT READ MEDIUM - INCOMPATIBLE FORMAT
     }
-        
+
     else if (DiscType == 1) {
         if (DiscIsDVD())
             ReadDVDRaw();
         else
-            ReturnSense(0x05, 0x30, 0x02); // CANNOT READ MEDIUM - INCOMPATIBLE FORMAT
+            ReturnSense(0x05, 0x30, 0x02);
     }
 
     else if (DiscType == 2) {

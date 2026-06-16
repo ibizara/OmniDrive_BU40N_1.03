@@ -50,12 +50,10 @@
 .definearmlabel   SetBDCharacteristics,0x148E90
 .definearmlabel   ReadDVDTOC,0x148F20
 .definearmlabel   ReadFromDVDSector,0x149388
-.definearmlabel   DVDMinusReadCheck,0x1495F0
 .definearmlabel   CopySectorToDiscStructMem,0x149660
 
 ; Compressed Functions
 .definedatalabel DVDCharacteristicsPatchAddr,0x01F9A802
-.definedatalabel DVDTOCReadPatchAddr,0x01F9B008
 
 ; Inline patches
 .definedatalabel ReadSpeedPatchAddr,0x01BB06
@@ -87,9 +85,8 @@
 .definedatalabel CDLeadOutPatchAddr4,0x142880 // nop
 .definedatalabel CDLeadOutPatchAddr5,0x14291A // nop
 .definedatalabel CDLeadOutPatchAddr6,0x142934 // nop
-.definedataLabel DVDMinusReadCheckHookAddr,0x1449B2
-.definedataLabel DVDScramblePatchAddr1,0x144A28
-.definedataLabel DVDScramblePatchAddr2,0x144A32
+
+.definedataLabel DVDScramblePatchAddr,0x144A32
 .definedatalabel DVDScrambleHookAddr,0x144A36
 .definedatalabel DVDEDCHookAddr,0x144D8E
 .definedatalabel InquiryDataPatch,0x14F83E

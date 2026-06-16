@@ -46,11 +46,9 @@ extern void ReadDVDRAMData(DWORD fua);
 extern DWORD SetBDCharacteristics();
 extern DWORD ReadDVDTOC(DWORD unk);
 extern DWORD ReadFromDVDSector(DWORD block, DWORD frame, DWORD offset);
-extern DWORD DVDMinusReadCheck();
 extern void CopySectorToDiscStructMem(DWORD dest, WORD sectorNum);
 
 extern DWORD TocOffset;
 extern BYTE* DVDCharacteristicsPatchPtr;
-extern BYTE* DVDTOCReadPatchPtr;
 
 #endif

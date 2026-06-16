@@ -18,14 +18,14 @@ OmniDrive is a firmware modification for MediaTek MT1959-based optical disc driv
 | BD-XL (R/RE) | ☑️ |
 | UHD-BD | ☑️ |
 | PlayStation 3 BD-ROM | ☑️ | Disc contents are encrypted, disc key is not retrievable
-| PlayStation 4 BD-ROM | ☑️ | Game files are encrypted, encryption key is not retrievable
-| PlayStation 5 BD-ROM | ☑️ | Game files are encrypted, encryption key is not retrievable
+| PlayStation 4 BD-ROM | ☑️ | Disc contents are encrypted, disc key is not retrievable
+| PlayStation 5 BD-ROM | ☑️ | Disc contents are encrypted, disc key is not retrievable
 | Xbox (XGD1) | ✅ |
 | Xbox 360 (XGD2/XGD3) | ✅ |
-| Xbox One/Series (XGD4) | ✅ | Game files are encrypted, encryption key is not retrievable
+| Xbox One/Series (XGD4) | ✅ | Disc contents are encrypted, disc key is not retrievable
 | GameCube (NROM)/Wii (RVL-ROM) | ✅ |
 | GameCube (NR)/Wii (RVT-R) | ❓ |
-| Wii U (WUP-ROM?) | ⚠️ | Can be read/descrambled but not decrypted, disc key is not retrievable |
+| Wii U (WUP-ROM?) | ⚠️ | Can be read as raw, but scrambling algorithm is currently unknown |
 | Wii U (CAT-R) | ☑️ |
 | Dreamcast (GD-ROM/GD-R) | ❎ | Only low-density area can be read |
 
@@ -45,16 +45,15 @@ Key:
 * Python 3
 * pycryptodome
 ### Instructions
-1. Put the stock LG BU40N 1.00 and ASUS BW-16D1HT 3.02 firmware files in the `firmware` folder. The files should be named the following and have the following checksums:
+1. Put the stock LG BU40N 1.00, MK LG BU40N 1.03 and ASUS BW-16D1HT 3.02 firmware files in the `firmware` folder. The files should be named the following and have the following checksums:
 
 | Filename | CRC32 | MD5 | SHA-1 |
 | --- | --- | --- | --- |
 | HL-DT-ST_BD-RE_BU40N_1.00.bin | `E3C1A315` | `EDB28FCD7A239281ACE26A468D382A9C` | `9C48677B155154D24A3B95A32B4A29CA02FF40B3` |
+| HL-DT-ST_BD-RE_BU40N_1.03.bin | `6A3465C7` | `74EBAF627D2AAC5F899191D6CACEB54C` | `F5258EA100BC26C87F39C3371878123F42F1DFBC` |
 | ASUS_BW-16D1HT_3.02.bin | `84000B21` | `97F0EEABD0B675B4363B2C4749226016` | `F8DF5B579F25DA8D4E5AA5EF79F3005DAC5EB8C7` |
 2. Create a `build` folder and run `cmake -G Ninja ..` from the build folder.
 3. Run `ninja`. The patched firmware files should be output in the `patched_firmware` folder.
 
 ## Flashing
 Currently the recommended method to flash the drives is to use `sdftool` which comes as part of [MakeMKV](https://makemkv.com/). The BU40N firmware should work with all slim drives and the BW-16D1HT firmware should work with all desktop drives.
-
-[Redumper](https://github.com/superg/redumper) has initial support for flashing, but cannot cross-flash drives yet.
