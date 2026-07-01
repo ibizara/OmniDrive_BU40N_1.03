@@ -53,7 +53,7 @@
 .definearmlabel   CopySectorToDiscStructMem,0x149CB0
 
 ; Compressed Functions
-.definedatalabel DVDCharacteristicsPatchAddr,0x01F9A802
+.definedatalabel DVDCharacteristicsPatchAddr,0x01F9A8DA
 
 ; Inline patches
 .definedatalabel ReadSpeedPatchAddr,0x01BB06
